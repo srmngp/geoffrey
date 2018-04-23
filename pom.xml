@@ -22,7 +22,7 @@
 		<spring-data.version>2.0.6.RELEASE</spring-data.version>
 		<spring-security.version>5.0.4.RELEASE</spring-security.version>
 		<primefaces.version>6.2</primefaces.version>
-		<primefaces-themes.version>1.0.10</primefaces-themes.version>
+		<primefaces-themes.version>1.0.8</primefaces-themes.version>
 	</properties>
 
 	<dependencies>
@@ -84,7 +84,7 @@
 			<version>${primefaces.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.primefaces.themes</groupId>
+			<groupId>org.primefaces.extensions</groupId>
 			<artifactId>all-themes</artifactId>
 			<version>${primefaces-themes.version}</version>
 		</dependency>
