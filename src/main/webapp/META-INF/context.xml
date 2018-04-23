@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+
+	<Resource name="jdbc/geoffreyDS" type="javax.sql.DataSource" 
+		driverClassName="org.mariadb.jdbc.Driver" maxActive="10" maxIdle="5" 		
+		url="jdbc:mariadb://localhost:3306/geoffrey" username="root" password="" 
+		auth="Container" />
+		
+</Context>

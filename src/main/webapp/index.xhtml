@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Geoffrey</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/default.css" />
+</h:head>
+<h:body>
+	<h3>Bienvenido <h:outputText value="#{security.login}" /></h3>
+	<h:outputText rendered="#{security.hasRole('ROLE_ADMIN')}" value="Tiene privilegios de administrador." />
+	<br /><br />
+	<a href="#{request.contextPath}/logout">Cerrar sesión</a>
+</h:body>
+</html>

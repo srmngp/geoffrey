@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/geoffreyDS" />
+
+	<context:component-scan base-package="es.alfatecsistemas.glpinfo.geoffrey" />
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<jpa:repositories base-package="es.alfatecsistemas.glpinfo.geoffrey.model.repository" />
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="geoffrey-pu" />
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+	<bean name="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:password-encoder ref="bcryptEncoder" />
+			<security:jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="select login, password, activo from usuarios where login = ?"
+				authorities-by-username-query="select u.login, r.nombre from usuarios u, roles r, autorizaciones a where a.id_usuario = u.id and a.id_rol = r.id and u.login = ?" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<security:http use-expressions="false">
+		<security:form-login login-page="/login.xhtml" />
+		<security:csrf disabled="true" />
+		<security:logout />
+  		<security:intercept-url pattern="/login.xhtml*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+		<security:intercept-url pattern="/admin/*" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/**" access="ROLE_USER" />	
+	</security:http>
+
+</beans>
