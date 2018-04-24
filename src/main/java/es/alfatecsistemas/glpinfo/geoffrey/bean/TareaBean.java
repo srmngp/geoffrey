@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 @RequestScoped
 public class TareaBean {
 	
-	
+
 
 }
