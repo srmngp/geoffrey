@@ -1,5 +1,8 @@
 package es.alfatecsistemas.glpinfo.geoffrey.bean;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -23,12 +26,20 @@ public class TareaBean {
 	private int identificador;
 	private String titulo;
 	private String descripcion;
+	private DateFormat sourceFormat = new SimpleDateFormat("dd/MM/yyyy");
+	private String fechaString = "25/12/2010";
 	private Date fecha;
 	private int tiempo;
 	
 	private List<Tarea> tareas;
 	
 	public void crearTarea() {
+		try {
+			fecha=sourceFormat.parse(fechaString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		geoffreyService.guardarTarea(id,tipo,identificador,titulo, descripcion, fecha, tiempo);
 	}
 	
@@ -100,6 +111,15 @@ public class TareaBean {
 		this.tareas = tareas;
 	}
 
+	public String getFechaString() {
+		return fechaString;
+	}
+
+	public void setFechaString(String fechaString) {
+		this.fechaString = fechaString;
+	}
+
+	
 	
 	
 	

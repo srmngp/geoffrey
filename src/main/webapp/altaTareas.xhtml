@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Nueva tarea</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/css/default.css" />
+</h:head>
+<h:body>
+	<h3>
+		Tarea:
+		<h:outputText value="#{security.login}" />
+	</h3>
+	<a href="#{request.contextPath}/logout">Cerrar sesión</a>
+	<h1>Alta de nueva tarea</h1>
+	<h:form>
+			<p:inputText value="#{tareaBean.tipo}" placeholder="Tipo"/>
+			<p:inputText value="#{tareaBean.identificador}" placeholder="Identificador"/>
+			<p:inputText value="#{tareaBean.titulo}" placeholder="Título"/>
+			<p:inputText value="#{tareaBean.descripcion}" placeholder="Descripción"/>
+       		<p:inputMask value="#{tareaBean.fechaString}" mask="99/99/9999" placeholder="Fecha"/>
+			<p:inputText value="#{tareaBean.tiempo}" placeholder="Tiempo"/>
+
+		<br />
+		<p:commandButton value="Guardar" id="nonAjax"
+			actionListener="#{tareaBean.crearTarea}" ajax="false" icon="fa fa-save" />
+	</h:form>
+
+</h:body>
+</html>
