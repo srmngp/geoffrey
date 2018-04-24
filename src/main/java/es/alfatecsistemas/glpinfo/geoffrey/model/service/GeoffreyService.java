@@ -4,12 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import es.alfatecsistemas.glpinfo.geoffrey.model.entity.Tarea;
 import es.alfatecsistemas.glpinfo.geoffrey.model.entity.Usuario;
 import es.alfatecsistemas.glpinfo.geoffrey.model.repository.TareaRepository;
 import es.alfatecsistemas.glpinfo.geoffrey.model.repository.UsuarioRepository;
+import es.alfatecsistemas.glpinfo.geoffrey.support.GeoffreyException;
 
 @Service
 public class GeoffreyService {
@@ -23,9 +25,12 @@ public class GeoffreyService {
 	
 	//Servicios
 	
-	public void guardar(String login, String password, String nombre) {
+	public void guardar(String login, String password, String nombre) throws GeoffreyException  {
 		Usuario u = new Usuario();
+		u.setActivo(true);
 		u.setLogin(login);
+		//Encriptar contraseña
+		password = BCrypt.hashpw(password, BCrypt.gensalt());
 		u.setPassword(password);
 		u.setNombre(nombre);
 		

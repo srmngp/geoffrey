@@ -1,11 +1,14 @@
 package es.alfatecsistemas.glpinfo.geoffrey.bean;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import es.alfatecsistemas.glpinfo.geoffrey.model.service.GeoffreyService;
+import es.alfatecsistemas.glpinfo.geoffrey.support.GeoffreyException;
 
 @Component
 @RequestScoped
@@ -55,8 +58,16 @@ public class UsuarioBean {
 
 	// Métodos
 	
-	public void registrar() {
-		geoffreyService.guardar(login, password, nombre);
+	public String registrar() {
+		FacesMessage mensaje = new FacesMessage("Usuario registrado correctamente.");
+		try {
+			geoffreyService.guardar(login, password, nombre);
+		} catch (GeoffreyException e) {
+			mensaje.setSummary(e.getMessage());
+			return "mensaje";
+		}
+		FacesContext.getCurrentInstance().addMessage(null, mensaje);
+		return null;
 	}
 
 }
