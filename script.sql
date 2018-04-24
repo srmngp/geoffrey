@@ -5,6 +5,7 @@ create table usuarios (
 	id int primary key auto_increment,
 	login varchar(50) not null,
 	password varchar(100) not null,
+	nombre varchar(50) not null,
 	activo boolean not null default 1
 );
 
@@ -21,7 +22,7 @@ create table autorizaciones (
 	constraint fk_autorizaciones_roles foreign key (id_rol) references roles (id)
 );
 
-insert into usuarios (login, password) values ('admin', '$2a$04$AGxRnbHs67Rr71XJTIqVCuoCU2kyk3zj5yiEGm.t/BFFOp19F6Oqi');  /* bcrypt */
+insert into usuarios (login, password, nombre) values ('admin', '$2a$04$AGxRnbHs67Rr71XJTIqVCuoCU2kyk3zj5yiEGm.t/BFFOp19F6Oqi','administrador');  /* bcrypt */
 insert into roles (nombre) values ('ROLE_ADMIN');
 insert into roles (nombre) values ('ROLE_USER');
 insert into autorizaciones values (1, 1);
