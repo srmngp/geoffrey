@@ -2,6 +2,7 @@ package es.alfatecsistemas.glpinfo.geoffrey.model.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,7 @@ public class Rol {
 
 	private String nombre;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private List<Usuario> usuarios;
 	
 	public Long getId() {
