@@ -19,7 +19,9 @@ public class UsuarioBean {
 	private String password;
 	private Boolean activo;
 	private String nombre;
-	
+
+	private String rol;
+
 	@Autowired
 	private GeoffreyService geoffreyService;
 
@@ -56,12 +58,32 @@ public class UsuarioBean {
 		this.nombre = nombre;
 	}
 
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
 	// Métodos
-	
+
 	public String registrar() {
 		FacesMessage mensaje = new FacesMessage("Usuario registrado correctamente.");
 		try {
-			geoffreyService.guardar(login, password, nombre);
+			geoffreyService.guardarUsuario(login, password, nombre);
+		} catch (GeoffreyException e) {
+			mensaje.setSummary(e.getMessage());
+			return "mensaje";
+		}
+		FacesContext.getCurrentInstance().addMessage(null, mensaje);
+		return null;
+	}
+
+	public String asignarRol() {
+		FacesMessage mensaje = new FacesMessage("Rol asignado.");
+		try {
+			geoffreyService.asignarRol(rol, login);
 		} catch (GeoffreyException e) {
 			mensaje.setSummary(e.getMessage());
 			return "mensaje";

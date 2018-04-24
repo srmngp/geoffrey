@@ -4,11 +4,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import es.alfatecsistemas.glpinfo.geoffrey.model.entity.Usuario;
+import es.alfatecsistemas.glpinfo.geoffrey.model.entity.Rol;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-	@Query("select u from Usuario u where u.login = :login")
-	Usuario buscarUsuarioByNombre(@Param("login") String login);
+public interface RolRepository extends JpaRepository<Rol, Long> {
+	
+	@Query("select r from Rol r where r.nombre = :nombre")
+	Rol buscarRolByNombre(@Param("nombre") String nombre);
+	
 }

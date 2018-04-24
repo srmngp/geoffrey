@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Nueva alta</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/css/default.css" />
+</h:head>
+<h:body>
+	<h3>
+		Usuario:
+		<h:outputText value="#{security.login}" />
+	</h3>
+	<a href="#{request.contextPath}/logout">Cerrar sesión</a>
+	<h1>Alta a nuevo usuario</h1>
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="3">
+			<h:outputLabel for="login" value="Nombre de usuario" />
+			<p:inputText id="login" value="#{usuarioBean.login}" />
+
+			<h:outputLabel for="rol" value="Rol" />
+			<p:inputText id="rol" value="#{usuarioBean.rol}" />
+		</h:panelGrid>
+		<br />
+		<p:growl id="growl" life="2000" />
+		<p:commandButton value="Guardar" id="nonAjax"
+			actionListener="#{usuarioBean.asignarRol}" ajax="false"
+			icon="fa fa-save" />
+	</h:form>
+
+</h:body>
+</html>
