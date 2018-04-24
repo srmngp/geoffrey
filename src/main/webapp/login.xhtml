@@ -5,28 +5,24 @@
 <h:head>
 	<title>Acceso</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/default.css" />
+	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/styleLogin.css" />
 </h:head>
 <h:body>
 	<h:outputText rendered="#{param['error'] != null}" value="Usuario y contraseña no válidos." />
 	<h:outputText rendered="#{param['logout'] != null}" value="Has sido desconectado." />
 	<br />
 	<form action="#{request.contextPath}/login" method="post">
+		<div class='wrap'>
+	
 		<table>
 			<tr>
 				<td>
-					<label for="login">Usuario: </label>
-				</td>
-				<td>
-					<input id="login" type="text" name="username" />
+					<input id="login" type="text" name="username" placeholder="Usuario" />
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<label for="password">Contraseña: </label>
-				</td>
-				<td>
-					<input id="password" type="password" name="password" />
+					<input id="password" type="password" name="password" placeholder="Contraseña"/>
 				</td>
 			</tr>
 			<tr>
@@ -35,6 +31,7 @@
 				</td>
 			</tr>
 		</table>
+		</div>
 	</form>
 </h:body>
 </html>
