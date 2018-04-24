@@ -25,6 +25,7 @@ create table autorizaciones (
 insert into usuarios (login, password, nombre) values ('admin', '$2a$04$AGxRnbHs67Rr71XJTIqVCuoCU2kyk3zj5yiEGm.t/BFFOp19F6Oqi','administrador');  /* bcrypt */
 insert into roles (nombre) values ('ROLE_ADMIN');
 insert into roles (nombre) values ('ROLE_USER');
+insert into roles (nombre) values ('ROLE_MAN');
 insert into autorizaciones values (1, 1);
 insert into autorizaciones values (1, 2);
 commit;
