@@ -5,7 +5,7 @@ import javax.faces.bean.RequestScoped;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import es.alfatecsistemas.glpinfo.geoffrey.model.service.UsuarioService;
+import es.alfatecsistemas.glpinfo.geoffrey.model.service.GeoffreyService;
 
 @Component
 @RequestScoped
@@ -18,7 +18,7 @@ public class UsuarioBean {
 	private String nombre;
 	
 	@Autowired
-	private UsuarioService usuarioService;
+	private GeoffreyService geoffreyService;
 
 	// Gets and sets
 	public String getLogin() {
@@ -56,7 +56,7 @@ public class UsuarioBean {
 	// Métodos
 	
 	public void registrar() {
-		usuarioService.guardar(login, password, nombre);
+		geoffreyService.guardar(login, password, nombre);
 	}
 
 }
