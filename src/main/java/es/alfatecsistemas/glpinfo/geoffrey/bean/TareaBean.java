@@ -1,12 +1,14 @@
 package es.alfatecsistemas.glpinfo.geoffrey.bean;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.bean.RequestScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import es.alfatecsistemas.glpinfo.geoffrey.model.entity.Tarea;
 import es.alfatecsistemas.glpinfo.geoffrey.model.service.GeoffreyService;
 
 @Component
@@ -24,8 +26,14 @@ public class TareaBean {
 	private Date fecha;
 	private int tiempo;
 	
+	private List<Tarea> tareas;
+	
 	public void crearTarea() {
 		geoffreyService.guardarTarea(id,tipo,identificador,titulo, descripcion, fecha, tiempo);
+	}
+	
+	public void listarTareas(){
+		tareas = geoffreyService.listarTareas();
 	}
 
 	public Long getId() {
@@ -82,6 +90,14 @@ public class TareaBean {
 
 	public void setTiempo(int tiempo) {
 		this.tiempo = tiempo;
+	}
+
+	public List<Tarea> getTareas() {
+		return tareas;
+	}
+
+	public void setTareas(List<Tarea> tareas) {
+		this.tareas = tareas;
 	}
 
 	
