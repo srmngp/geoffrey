@@ -10,13 +10,8 @@
 	<link rel="stylesheet" type="text/css"
 		href="#{request.contextPath}/resources/css/default.css" />
 </h:head>
-<ui:include src="../navigationbar.xhtml" />
+<ui:include src="/navigationbar.xhtml" />
 <h:body>
-	<h3>
-		Usuario:
-		<h:outputText value="#{security.login}" />
-	</h3>
-	<a href="#{request.contextPath}/logout">Cerrar sesión</a>
 	<h1>Alta a nuevo usuario</h1>
 	<h:form>
 		<h:panelGrid columns="2" cellpadding="3">

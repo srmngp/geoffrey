@@ -4,17 +4,20 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 	<h2>Geoffrey</h2>
-	
-	<p:button value="Añadir usuario"
-		rendered="#{security.hasRole('ROLE_MAN')}"
-		outcome="/man/altaUsuario.xhtml" icon="fa fa-user-circle" />
-	<p:button value="Gestionar tareas" outcome="/managetask.xhtml"
-		icon="fa fa-list" />
-	<p:button value="Asignar rol"
-		rendered="#{security.hasRole('ROLE_MAN')}"
-		outcome="/man/asignarRol.xhtml" icon=" fa fa-trash " />
-	<p:button value="Cerrar sesión" href="/logout" icon="fa fa-sign-out" />
 
+	<p:button value="Gestión de usuarios"
+		rendered="#{security.hasRole('ROLE_MAN')}"
+		outcome="/man/manageusers.xhtml" icon="fa fa-user-circle" />
+	<p:button value="Gestión de tareas" outcome="/managetask.xhtml"
+		icon="fa fa-list" />
+	<p:button value="Gestión de roles"
+		rendered="#{security.hasRole('ROLE_MAN')}"
+		outcome="/man/managerol.xhtml" icon=" fa fa-trash " />
+	<p:button value="Cerrar sesión" href="/logout" icon="fa fa-sign-out" />
+	<h3>
+		Usuario:
+		<h:outputText id="user" value="#{security.login}" />
+	</h3>
 	<h:body>
 	</h:body>
 </ui:composition>

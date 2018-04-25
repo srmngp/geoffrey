@@ -11,12 +11,8 @@
 	<link rel="stylesheet" type="text/css"
 		href="#{request.contextPath}/resources/css/default.css" />
 </h:head>
+<ui:include src="/navigationbar.xhtml" />
 <h:body>
-	<h3>
-		Usuario:
-		<h:outputText value="#{security.login}" />
-	</h3>
-	<a href="#{request.contextPath}/logout">Cerrar sesión</a>
 	<h1>Alta a nuevo usuario</h1>
 	<h:form>
 		<h:panelGrid columns="2" cellpadding="3">
@@ -24,7 +20,8 @@
 			<p:inputText id="login" value="#{usuarioBean.login}" />
 
 			<p:outputLabel for="password" value="Contraseña" />
-			<p:inputText id="password" type="password" value="#{usuarioBean.password}" />
+			<p:inputText id="password" type="password"
+				value="#{usuarioBean.password}" />
 
 			<p:outputLabel for="nombre" value="Nombre" />
 			<p:inputText id="nombre" value="#{usuarioBean.nombre}" />
@@ -34,8 +31,9 @@
 			actionListener="#{usuarioBean.registrar}" ajax="false"
 			icon="fa fa-save" />
 	</h:form>
-	
-	<p:dataTable id="usuarios" var="usuario" value="#{usuarioBean.listaUsuarios}">
+
+	<p:dataTable id="usuarios" var="usuario"
+		value="#{usuarioBean.listaUsuarios}">
 		<p:column headerText="Login">
 			<h:outputText value="#{usuario.login}" />
 		</p:column>

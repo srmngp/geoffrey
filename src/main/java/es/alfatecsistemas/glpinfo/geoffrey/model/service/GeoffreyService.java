@@ -51,6 +51,7 @@ public class GeoffreyService {
 	public void asignarRol(String rol, String login) throws GeoffreyException {
 		Usuario u = usuarioRepository.buscarUsuarioByNombre(login);
 		List<Rol> roles = new ArrayList<Rol>();
+		u.setRoles(roles); // Vacia los roles que tenia
 		Rol r;
 		
 		if (rol.equals("ROLE_ADMIN")) {

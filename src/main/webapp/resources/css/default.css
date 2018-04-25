@@ -14,13 +14,13 @@ input[type="text"]:focus, input[type="password"]:focus {
 
 h2 {
 	color: #A30000;
-	font-family: sans-serif;
+	font-family: 'Ubuntu';
 }
 
 #user {
-	font-family: sans-serif;
+	font-family: monospace;
 	font-size: 18px;
 	font-weight: 400;
 	color: #ffffff;
-	background: #ee0467
+	background: #000000;
 }
