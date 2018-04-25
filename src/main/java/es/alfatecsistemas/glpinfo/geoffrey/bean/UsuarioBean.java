@@ -1,5 +1,9 @@
 package es.alfatecsistemas.glpinfo.geoffrey.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -7,6 +11,7 @@ import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import es.alfatecsistemas.glpinfo.geoffrey.model.entity.Usuario;
 import es.alfatecsistemas.glpinfo.geoffrey.model.service.GeoffreyService;
 import es.alfatecsistemas.glpinfo.geoffrey.support.GeoffreyException;
 
@@ -21,6 +26,9 @@ public class UsuarioBean {
 	private String nombre;
 
 	private String rol;
+
+	private List<Usuario> listaUsuarios;
+	private List<String> nombres;
 
 	@Autowired
 	private GeoffreyService geoffreyService;
@@ -66,7 +74,28 @@ public class UsuarioBean {
 		this.rol = rol;
 	}
 
+	public List<Usuario> getListaUsuarios() {
+		return listaUsuarios;
+	}
+
+	public void setListaUsuarios(List<Usuario> listaUsuarios) {
+		this.listaUsuarios = listaUsuarios;
+	}
+
+	public List<String> getNombres() {
+		return nombres;
+	}
+
+	public void setNombres(List<String> nombres) {
+		this.nombres = nombres;
+	}
+
 	// Métodos
+	
+	@PostConstruct
+	public void init() {
+		list();
+	}
 
 	public String registrar() {
 		FacesMessage mensaje = new FacesMessage("Usuario registrado correctamente.");
@@ -90,6 +119,20 @@ public class UsuarioBean {
 		}
 		FacesContext.getCurrentInstance().addMessage(null, mensaje);
 		return null;
+	}
+
+	public void list() {
+		try {
+			listaUsuarios = geoffreyService.listarUsuarios();
+			nombres = new ArrayList<String>();
+			for (int i = 0; i < listaUsuarios.size(); i++) {
+				Usuario u = listaUsuarios.get(i);
+				nombres.add(u.getLogin());
+			}
+		} catch (GeoffreyException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

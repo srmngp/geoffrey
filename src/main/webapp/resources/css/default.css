@@ -1,3 +1,7 @@
+body {
+	font-family: 'Ubuntu';
+}
+
 .ui-widget {
 	font-size: 0.95em;
 }

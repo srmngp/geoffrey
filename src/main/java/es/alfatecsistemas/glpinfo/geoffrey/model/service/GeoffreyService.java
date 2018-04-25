@@ -76,4 +76,8 @@ public class GeoffreyService {
 	public List<Tarea> listarTareas() {
 		return tareaRepository.findAll();
 	}
+	
+	public List<Usuario> listarUsuarios() throws GeoffreyException {
+		return usuarioRepository.findAll();
+	}
 }

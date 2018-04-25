@@ -18,8 +18,12 @@
 	<h1>Alta a nuevo usuario</h1>
 	<h:form>
 		<h:panelGrid columns="2" cellpadding="3">
-			<h:outputLabel for="login" value="Nombre de usuario" />
-			<p:inputText id="login" value="#{usuarioBean.login}" />
+
+
+			<h:outputLabel for="nombre" value="Usuario" />
+			<p:selectOneMenu id="nombre" value="#{usuarioBean.login}">
+				<f:selectItems value="#{usuarioBean.nombres}" />
+			</p:selectOneMenu>
 
 			<h:outputLabel for="rol" value="Rol" />
 			<p:selectOneMenu id="rol" value="#{usuarioBean.rol}"
