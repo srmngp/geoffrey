@@ -2,21 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Geoffrey</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/default.css" />
-	
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/css/default.css" />
+
 </h:head>
-        <ui:include src="navigationbar.xhtml" />
+<ui:include src="navigationbar.xhtml" />
 <h:body>
-	<h3>Bienvenido <h:outputText value="#{security.login}" /></h3>
-	<h:outputText rendered="#{security.hasRole('ROLE_ADMIN')}" value="Tiene privilegios de administrador." />
-	<br /><br />
-	
-	        <ui:include src="adduser.xhtml" />
-	
+	<h3>Bienvenido</h3>
+
+	<h:outputText value="#{security.login}" />
+	<h:outputText rendered="#{security.hasRole('ROLE_ADMIN')}"
+		value="Tiene privilegios de administrador." />
+	<br />
+	<br />
+
+	<ui:include src="addUser.xhtml" />
+
 </h:body>
 </html>

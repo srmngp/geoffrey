@@ -3,12 +3,18 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	<h2>Include page</h2>
-	<p:button value="Añadir usuario"  rendered="#{security.hasRole('ROLE_MAN')}" outcome="/man/altaUsuario.xhtml"
-		icon="fa fa-user-circle" />
-	<p:button value="Gestionar tareas" outcome="altaTareas.xhtml"
+	<h2>Geoffrey</h2>
+	
+	<p:button value="Añadir usuario"
+		rendered="#{security.hasRole('ROLE_MAN')}"
+		outcome="/man/altaUsuario.xhtml" icon="fa fa-user-circle" />
+	<p:button value="Gestionar tareas" outcome="/managetask.xhtml"
 		icon="fa fa-list" />
-	<p:button value="Asignar rol" rendered="#{security.hasRole('ROLE_MAN')}" outcome="/man/asignarRol.xhtml"
-		icon=" fa fa-trash " />
+	<p:button value="Asignar rol"
+		rendered="#{security.hasRole('ROLE_MAN')}"
+		outcome="/man/asignarRol.xhtml" icon=" fa fa-trash " />
 	<p:button value="Cerrar sesión" href="/logout" icon="fa fa-sign-out" />
+
+	<h:body>
+	</h:body>
 </ui:composition>
