@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Nueva tarea</title>
@@ -32,8 +33,38 @@
 
 		<br />
 		<p:commandButton value="Guardar" id="nonAjax"
-			actionListener="#{tareaBean.crearTarea}" ajax="false" icon="fa fa-save" />
+			actionListener="#{tareaBean.crearTarea}" ajax="false" icon="fa fa-save" update="tareas" />
 	</h:form>
+	
+	<p:dataTable id="tareas" var="tarea" value="#{tareaBean.tareas}">
+			<p:column headerText="Tipo">
+				<h:outputText value="#{tarea.tipo}" />
+   			</p:column>
+			<p:column headerText="Identificador">
+				<h:outputText value="#{tarea.identificador}" />
+   			</p:column>
+   			<p:column headerText="Título">
+				<h:outputText value="#{tarea.titulo}" />
+   			</p:column>
+   			<p:column headerText="Descripción">
+				<h:outputText value="#{tarea.descripcion}" />
+   			</p:column>
+   			<p:column headerText="Fecha">
+				<h:outputText value="#{tarea.fecha}" />
+   			</p:column>
+   			<p:column headerText="Tiempo(minutos)">
+				<h:outputText value="#{tarea.tiempo}" />
+   			</p:column>
+   			<p:column headerText="Tiempo(horas)">
+				<h:outputText value="#{(tarea.tiempo)/60}" />
+   			</p:column>
+ 
+   			
+			<f:facet name="footer">
+		        En total hay #{fn:length(tareaBean.tareas)} tareas.
+		    </f:facet>
+		
+	</p:dataTable>
 
 </h:body>
 </html>

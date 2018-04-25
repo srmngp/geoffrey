@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.RequestScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +51,12 @@ public class TareaBean {
 		java.sql.Date fecha = new java.sql.Date(date.getTime());
 
 		geoffreyService.guardarTarea(id,tipo,identificador,titulo, descripcion, fecha, tiempo);
+		
+		//mantiene la lista actualizada
+		listarTareas();
 	}
 	
+	@PostConstruct
 	public void listarTareas(){
 		tareas = geoffreyService.listarTareas();
 	}
