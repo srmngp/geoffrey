@@ -28,4 +28,5 @@ insert into roles (nombre) values ('ROLE_USER');
 insert into roles (nombre) values ('ROLE_MAN');
 insert into autorizaciones values (1, 1);
 insert into autorizaciones values (1, 2);
+insert into autorizaciones values (1, 3);
 commit;

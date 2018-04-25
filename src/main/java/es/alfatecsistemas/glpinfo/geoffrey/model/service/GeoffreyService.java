@@ -18,46 +18,56 @@ import es.alfatecsistemas.glpinfo.geoffrey.support.GeoffreyException;
 
 @Service
 public class GeoffreyService {
-	
-	//Inyeccion de dependencias
+
+	// Inyeccion de dependencias
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+
 	@Autowired
 	private TareaRepository tareaRepository;
-	
-	@Autowired 
+
+	@Autowired
 	private RolRepository rolRepository;
-	
-	//Servicios
-	
-	public void guardarUsuario(String login, String password, String nombre) throws GeoffreyException  {
+
+	// Servicios
+
+	public void guardarUsuario(String login, String password, String nombre) throws GeoffreyException {
 		Usuario u = new Usuario();
-		
+
 		u.setActivo(true);
 		u.setLogin(login);
-		//Encriptar contraseña
+		// Encriptar contraseña
 		password = BCrypt.hashpw(password, BCrypt.gensalt());
 		u.setPassword(password);
 		u.setNombre(nombre);
-		/*List<Rol> roles = new ArrayList<Rol>();
-		Rol rol = new Rol();
-		rol.setNombre("ROLE_USER");
-		roles.add(rol);
-		u.setRoles(roles);*/
-		
+		/*
+		 * List<Rol> roles = new ArrayList<Rol>(); Rol rol = new Rol();
+		 * rol.setNombre("ROLE_USER"); roles.add(rol); u.setRoles(roles);
+		 */
+
 		usuarioRepository.save(u);
 	}
-	
+
 	public void asignarRol(String rol, String login) throws GeoffreyException {
 		Usuario u = usuarioRepository.buscarUsuarioByNombre(login);
-		Rol r = rolRepository.buscarRolByNombre(rol);
 		List<Rol> roles = new ArrayList<Rol>();
-		roles.add(r);
+		Rol r;
+		
+		if (rol.equals("ROLE_ADMIN")) {
+			r = rolRepository.buscarRolByNombre("ROLE_ADMIN");
+			roles.add(r);
+			r = rolRepository.buscarRolByNombre("ROLE_MAN");
+			roles.add(r);
+		}
+		
+		if (rol.equals("ROLE_MAN")) {
+			r = rolRepository.buscarRolByNombre("ROLE_MAN");
+			roles.add(r);
+		}
 		r = rolRepository.buscarRolByNombre("ROLE_USER");
 		roles.add(r);
 		u.setRoles(roles);
-		
+
 		usuarioRepository.save(u);
 	}
 
@@ -71,14 +81,14 @@ public class GeoffreyService {
 		t.setDescripcion(descripcion);
 		t.setFecha(fecha);
 		t.setTiempo(tiempo);
-		
+
 		tareaRepository.save(t);
 	}
-	
+
 	public List<Tarea> listarTareas() {
 		return tareaRepository.findAll();
 	}
-	
+
 	public List<Usuario> listarUsuarios() throws GeoffreyException {
 		return usuarioRepository.findAll();
 	}
