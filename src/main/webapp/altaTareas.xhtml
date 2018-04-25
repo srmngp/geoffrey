@@ -2,22 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Nueva tarea</title>
+	<title>Tareas</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css"
 		href="#{request.contextPath}/resources/css/default.css" />
 </h:head>
+<ui:include src="navigationbar.xhtml" />
 <h:body>
 	<h3>
 		Usuario:
 		<h:outputText value="#{security.login}" />
 	</h3>
-	<a href="#{request.contextPath}/logout">Cerrar sesión</a>
 	<h1>Alta de nueva tarea</h1>
-	<h:form>
+	<p:commandButton value="Añadir" oncomplete="PF('addDialog').show()"
+		icon="fa fa-user-circle" />
+	<p:dialog id="addDialog" widgetVar="addDialog"
+		header="Rellene los campos" resizable="false">
+		<h:form>
 			<p:selectOneMenu id="rol" value="#{tareaBean.tipo}"
 				style="width:125px">
 				<f:selectItem itemLabel="Seleccionar tipo" itemValue="" />
@@ -25,45 +30,49 @@
 				<f:selectItem itemLabel="Solicitud" itemValue="SOLICITUD" />
 				<f:selectItem itemLabel="Incidencia" itemValue="INCIDENCIA" />
 			</p:selectOneMenu>
-			<p:inputText value="#{tareaBean.identificador}" placeholder="Identificador"/>
-			<p:inputText value="#{tareaBean.titulo}" placeholder="Título"/>
-			<p:inputText value="#{tareaBean.descripcion}" placeholder="Descripción"/>
-       		<p:inputMask value="#{tareaBean.fechaString}" mask="99/99/9999" placeholder="Fecha"/>
-			<p:inputText value="#{tareaBean.tiempo}" placeholder="Tiempo"/>
+			<p:inputText value="#{tareaBean.identificador}"
+				placeholder="Identificador" />
+			<p:inputText value="#{tareaBean.titulo}" placeholder="Título" />
+			<p:inputText value="#{tareaBean.descripcion}"
+				placeholder="Descripción" />
+			<p:inputMask value="#{tareaBean.fechaString}" mask="99/99/9999"
+				placeholder="Fecha" />
+			<p:inputText value="#{tareaBean.tiempo}" placeholder="Tiempo" />
 
-		<br />
-		<p:commandButton value="Guardar" id="nonAjax"
-			actionListener="#{tareaBean.crearTarea}" ajax="false" icon="fa fa-save" update="tareas" />
-	</h:form>
-	
+			<br />
+			<p:commandButton value="Guardar" id="nonAjax"
+				actionListener="#{tareaBean.crearTarea}" ajax="false"
+				icon="fa fa-save" update="tareas" />
+		</h:form>
+	</p:dialog>
 	<p:dataTable id="tareas" var="tarea" value="#{tareaBean.tareas}">
-			<p:column headerText="Tipo">
-				<h:outputText value="#{tarea.tipo}" />
-   			</p:column>
-			<p:column headerText="Identificador">
-				<h:outputText value="#{tarea.identificador}" />
-   			</p:column>
-   			<p:column headerText="Título">
-				<h:outputText value="#{tarea.titulo}" />
-   			</p:column>
-   			<p:column headerText="Descripción">
-				<h:outputText value="#{tarea.descripcion}" />
-   			</p:column>
-   			<p:column headerText="Fecha">
-				<h:outputText value="#{tarea.fecha}" />
-   			</p:column>
-   			<p:column headerText="Tiempo(minutos)">
-				<h:outputText value="#{tarea.tiempo}" />
-   			</p:column>
-   			<p:column headerText="Tiempo(horas)">
-				<h:outputText value="#{(tarea.tiempo)/60}" />
-   			</p:column>
- 
-   			
-			<f:facet name="footer">
+		<p:column headerText="Tipo">
+			<h:outputText value="#{tarea.tipo}" />
+		</p:column>
+		<p:column headerText="Identificador">
+			<h:outputText value="#{tarea.identificador}" />
+		</p:column>
+		<p:column headerText="Título">
+			<h:outputText value="#{tarea.titulo}" />
+		</p:column>
+		<p:column headerText="Descripción">
+			<h:outputText value="#{tarea.descripcion}" />
+		</p:column>
+		<p:column headerText="Fecha">
+			<h:outputText value="#{tarea.fecha}" />
+		</p:column>
+		<p:column headerText="Tiempo(minutos)">
+			<h:outputText value="#{tarea.tiempo}" />
+		</p:column>
+		<p:column headerText="Tiempo(horas)">
+			<h:outputText value="#{(tarea.tiempo)/60}" />
+		</p:column>
+
+
+		<f:facet name="footer">
 		        En total hay #{fn:length(tareaBean.tareas)} tareas.
 		    </f:facet>
-		
+
 	</p:dataTable>
 
 </h:body>

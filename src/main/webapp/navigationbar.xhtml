@@ -1,14 +1,14 @@
-<ui:composition 
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-    <h2>Include page</h2>
-    <a href="#{request.contextPath}/logout">Cerrar sesión</a>
-			<p:button value="Añadir usuario"  outcome="altaUsuario.xhtml" icon="fa fa-user-circle" />
-			<p:button value="Añadir tarea" outcome="altaTareas.xhtml"  icon="fa fa-list"/>
-			<p:button value="Asignar rol" outcome="asignarRol.xhtml" icon=" fa fa-trash " />
-			<p:button value="Logout" href="/logout"  icon="fa fa-sign-out" />
-			<p:button value="Editar" oncomplete="" icon="fa fa-edit"/>
+	<h2>Include page</h2>
+	<p:button value="Añadir usuario"  rendered="#{security.hasRole('ROLE_MAN')}" outcome="altaUsuario.xhtml"
+		icon="fa fa-user-circle" />
+	<p:button value="Gestionar tareas" outcome="altaTareas.xhtml"
+		icon="fa fa-list" />
+	<p:button value="Asignar rol" outcome="asignarRol.xhtml"
+		icon=" fa fa-trash " />
+	<p:button value="Cerrar sesión" href="/logout" icon="fa fa-sign-out" />
 </ui:composition>
