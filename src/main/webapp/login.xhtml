@@ -5,32 +5,33 @@
 <h:head>
 	<title>Acceso</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/styleLogin.css" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/css/styleLogin.css" />
 </h:head>
 <h:body>
-	<h:outputText rendered="#{param['error'] != null}" value="Usuario y contraseña no válidos." />
-	<h:outputText rendered="#{param['logout'] != null}" value="Has sido desconectado." />
 	<br />
 	<form action="#{request.contextPath}/login" method="post">
 		<div class='wrap'>
-	
-		<table>
-			<tr>
-				<td>
-					<input id="login" type="text" name="username" placeholder="Usuario" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input id="password" type="password" name="password" placeholder="Contraseña"/>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="submit" value="Acceder" />
-				</td>
-			</tr>
-		</table>
+			<img src="resources/img/logoCut.png" id="imaLogin" />
+            <br/>
+			<h:outputText class="failLogin" rendered="#{param['error'] != null}"
+				value="Usuario y contraseña no válidos." />
+			<h:outputText class="failLogin" rendered="#{param['logout'] != null}"
+				value="Has sido desconectado." />
+			<table>
+				<tr>
+					<td><input id="login" type="text" name="username"
+						placeholder="Usuario" /></td>
+				</tr>
+				<tr>
+					<td><input id="password" type="password" name="password"
+						placeholder="Contraseña" /></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input class="button button2" type="submit"
+						value="Acceder" /></td>
+				</tr>
+			</table>
 		</div>
 	</form>
 </h:body>
