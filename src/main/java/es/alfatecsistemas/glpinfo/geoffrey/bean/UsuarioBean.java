@@ -92,9 +92,9 @@ public class UsuarioBean {
 
 	// Métodos
 	
-	@PostConstruct
-	public void init() {
-		list();
+	public void userNRoll() {
+		registrar();
+		asignarRol();
 	}
 
 	public String registrar() {
@@ -106,6 +106,7 @@ public class UsuarioBean {
 			return "mensaje";
 		}
 		FacesContext.getCurrentInstance().addMessage(null, mensaje);
+		list();
 		return null;
 	}
 
@@ -121,6 +122,7 @@ public class UsuarioBean {
 		return null;
 	}
 
+	@PostConstruct
 	public void list() {
 		try {
 			listaUsuarios = geoffreyService.listarUsuarios();

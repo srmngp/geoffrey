@@ -1,0 +1,38 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+    		
+<p:commandButton value="Añadir usuario" oncomplete="PF('addUserDialog').show()" icon="fa fa-edit"/>
+			
+	<p:dialog id="addUserDialog" widgetVar="addUserDialog" header="Introduce los datos del usuario" resizable="false">
+		<h:form>
+			<h:panelGrid columns="2" cellpadding="3">
+				<p:outputLabel for="login" value="Nombre de usuario" />
+				<p:inputText id="login" value="#{usuarioBean.login}" />
+	
+				<p:outputLabel for="password" value="Contraseña" />
+				<p:inputText id="password" type="password" value="#{usuarioBean.password}" />
+	
+				<p:outputLabel for="nombre" value="Nombre" />
+				<p:inputText id="nombre" value="#{usuarioBean.nombre}" />
+			</h:panelGrid>
+			<br />
+			
+			<h:outputLabel for="rol" value="Rol" />
+			
+					<p:selectOneMenu id="rol" value="#{usuarioBean.rol}"
+						style="width:125px">
+						<f:selectItem itemLabel="Usuario" itemValue="ROLE_USER" />
+						<f:selectItem itemLabel="Administrador" itemValue="ROLE_ADMIN" />
+						<f:selectItem itemLabel="Gestor" itemValue="ROLE_MAN" />
+					</p:selectOneMenu>
+			
+			<p:commandButton value="Guardar" id="nonAjax"
+				actionListener="#{usuarioBean.userNRoll}" ajax="false" icon="fa fa-save" />
+		</h:form>
+	</p:dialog>    
+	
+</ui:composition>
