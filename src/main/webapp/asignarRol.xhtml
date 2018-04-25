@@ -22,7 +22,12 @@
 			<p:inputText id="login" value="#{usuarioBean.login}" />
 
 			<h:outputLabel for="rol" value="Rol" />
-			<p:inputText id="rol" value="#{usuarioBean.rol}" />
+			<p:selectOneMenu id="rol" value="#{usuarioBean.rol}"
+				style="width:125px">
+				<f:selectItem itemLabel="Usuario" itemValue="ROLE_USER" />
+				<f:selectItem itemLabel="Administrador" itemValue="ROLE_ADMIN" />
+				<f:selectItem itemLabel="Gestor" itemValue="ROLE_MAN" />
+			</p:selectOneMenu>
 		</h:panelGrid>
 		<br />
 		<p:growl id="growl" life="2000" />
