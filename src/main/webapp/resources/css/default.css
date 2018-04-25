@@ -6,7 +6,7 @@ body {
 	font-size: 0.95em;
 }
 
-input[type="text"]:focus, input[type = "password"]:focus {
+input[type="text"]:focus, input[type="password"]:focus {
 	outline: none;
 	border-color: #A30000;
 	box-shadow: 0 0 10px #A30000;

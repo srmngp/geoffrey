@@ -18,13 +18,13 @@
 	<h1>Alta a nuevo usuario</h1>
 	<h:form>
 		<h:panelGrid columns="2" cellpadding="3">
-			<h:outputLabel for="login" value="Nombre de usuario" />
+			<p:outputLabel for="login" value="Nombre de usuario" />
 			<p:inputText id="login" value="#{usuarioBean.login}" />
 
-			<h:outputLabel for="password" value="Contraseña" />
+			<p:outputLabel for="password" value="Contraseña" />
 			<p:inputText id="password" type="password" value="#{usuarioBean.password}" />
 
-			<h:outputLabel for="nombre" value="Nombre" />
+			<p:outputLabel for="nombre" value="Nombre" />
 			<p:inputText id="nombre" value="#{usuarioBean.nombre}" />
 		</h:panelGrid>
 		<br />
