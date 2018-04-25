@@ -8,7 +8,7 @@
 		icon="fa fa-user-circle" />
 	<p:button value="Gestionar tareas" outcome="altaTareas.xhtml"
 		icon="fa fa-list" />
-	<p:button value="Asignar rol" outcome="asignarRol.xhtml"
+	<p:button value="Asignar rol" rendered="#{security.hasRole('ROLE_MAN')}" outcome="asignarRol.xhtml"
 		icon=" fa fa-trash " />
 	<p:button value="Cerrar sesión" href="/logout" icon="fa fa-sign-out" />
 </ui:composition>

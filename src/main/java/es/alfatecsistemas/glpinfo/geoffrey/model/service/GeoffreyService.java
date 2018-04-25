@@ -54,6 +54,8 @@ public class GeoffreyService {
 		Rol r = rolRepository.buscarRolByNombre(rol);
 		List<Rol> roles = new ArrayList<Rol>();
 		roles.add(r);
+		r = rolRepository.buscarRolByNombre("ROLE_USER");
+		roles.add(r);
 		u.setRoles(roles);
 		
 		usuarioRepository.save(u);
