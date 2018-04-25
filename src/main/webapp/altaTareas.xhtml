@@ -11,13 +11,19 @@
 </h:head>
 <h:body>
 	<h3>
-		Tarea:
+		Usuario:
 		<h:outputText value="#{security.login}" />
 	</h3>
 	<a href="#{request.contextPath}/logout">Cerrar sesión</a>
 	<h1>Alta de nueva tarea</h1>
 	<h:form>
-			<p:inputText value="#{tareaBean.tipo}" placeholder="Tipo"/>
+			<p:selectOneMenu id="rol" value="#{tareaBean.tipo}"
+				style="width:125px">
+				<f:selectItem itemLabel="Seleccionar tipo" itemValue="" />
+				<f:selectItem itemLabel="Tarea" itemValue="TAREA" />
+				<f:selectItem itemLabel="Solicitud" itemValue="SOLICITUD" />
+				<f:selectItem itemLabel="Incidencia" itemValue="INCIDENCIA" />
+			</p:selectOneMenu>
 			<p:inputText value="#{tareaBean.identificador}" placeholder="Identificador"/>
 			<p:inputText value="#{tareaBean.titulo}" placeholder="Título"/>
 			<p:inputText value="#{tareaBean.descripcion}" placeholder="Descripción"/>
