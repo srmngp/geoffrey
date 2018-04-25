@@ -1,14 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Geoffrey</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/default.css" />
-</h:head>
-<h:body>
-	<h2>Puta prueba</h2>
-</h:body>
-</html>
+    <h2>Include page</h2>
+    <a href="#{request.contextPath}/logout">Cerrar sesión</a>
+			<p:button value="Añadir usuario"  outcome="altaUsuario.xhtml" icon="fa fa-user-circle" />
+			<p:button value="Añadir tarea" outcome="altaTareas.xhtml"  icon="fa fa-list"/>
+			<p:button value="Asignar rol" outcome="asignarRol.xhtml" icon=" fa fa-trash " />
+			<p:button value="Logout" href="/logout"  icon="fa fa-sign-out" />
+			<p:button value="Editar" oncomplete="" icon="fa fa-edit"/>
+</ui:composition>
