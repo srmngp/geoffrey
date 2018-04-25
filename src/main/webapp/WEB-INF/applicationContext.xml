@@ -45,6 +45,7 @@
 		<security:form-login login-page="/login.xhtml" />
 		<security:csrf disabled="true" />
 		<security:logout />
+		<security:intercept-url pattern="/javax.faces.resource/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
   		<security:intercept-url pattern="/login.xhtml" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
   		<security:intercept-url pattern="/resources/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 		<security:intercept-url pattern="/admin/*" access="ROLE_ADMIN" />
