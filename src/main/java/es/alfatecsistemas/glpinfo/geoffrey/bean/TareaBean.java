@@ -3,8 +3,10 @@ package es.alfatecsistemas.glpinfo.geoffrey.bean;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import javax.faces.bean.RequestScoped;
 
@@ -27,19 +29,26 @@ public class TareaBean {
 	private String titulo;
 	private String descripcion;
 	private DateFormat sourceFormat = new SimpleDateFormat("dd/MM/yyyy");
-	private String fechaString = "25/12/2010";
+	private String fechaString;
 	private Date fecha;
 	private int tiempo;
 	
 	private List<Tarea> tareas;
 	
 	public void crearTarea() {
+		DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+		format.setTimeZone(TimeZone.getTimeZone("Etc/CET"));
+		
+		java.util.Date date = null;
 		try {
-			fecha=sourceFormat.parse(fechaString);
+			System.out.println(date = format.parse(fechaString));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		java.sql.Date fecha = new java.sql.Date(date.getTime());
+
 		geoffreyService.guardarTarea(id,tipo,identificador,titulo, descripcion, fecha, tiempo);
 	}
 	
