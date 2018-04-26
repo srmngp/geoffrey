@@ -43,8 +43,13 @@ public class GeoffreyService {
 
 		// Guarda el usuario sin el rol para evitar problemas de relaciones
 		usuarioRepository.save(u);
-		
+
 		asignarRol(rol, login);
+
+	}
+
+	public void editarUsuario(Usuario u) throws GeoffreyException {
+		usuarioRepository.save(u);
 
 	}
 

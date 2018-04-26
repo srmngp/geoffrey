@@ -18,12 +18,29 @@
 
 	<h:form id="id">
 		<p:dataTable id="usuarios" var="usuario"
-			value="#{usuarioBean.listaUsuarios}">
+			value="#{usuarioBean.listaUsuarios}" editable="true">
+
 			<p:column headerText="Login">
-				<h:outputText value="#{usuario.login}" />
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{usuario.login}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="loginInput" value="#{usuario.login}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+				<!-- <h:outputText value="#{usuario.login}" />  -->
 			</p:column>
 			<p:column headerText="Nombre">
-				<h:outputText value="#{usuario.nombre}" />
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{usuario.nombre}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="nombreInput" value="#{usuario.nombre}" style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
 			</p:column>
 			<p:column headerText="Rol">
 				<p:repeat value="#{usuario.roles}" var="str" varStatus="status">
@@ -31,11 +48,14 @@
 			</p:repeat>
 			</p:column>
 
-			<p:column headerText="Editar / Borrar">
-				<p:commandButton icon="ui-icon-pencil" title="Editar"
-					actionListener="#{usuarioBean.eliminar(usuario)}" ajax="false" />
+			<p:column headerText="Editar / Borrar" style="width:100px">
+				<p:commandButton icon="fa fa-save" title="Editar"
+					actionListener="#{usuarioBean.editar(usuario)}" ajax="false" />
 				<p:commandButton icon="ui-icon-trash" title="Borrar"
 					actionListener="#{usuarioBean.eliminar(usuario)}" ajax="false" />
+			</p:column>
+			<p:column style="width:32px">
+				<p:rowEditor />
 			</p:column>
 
 			<f:facet name="footer">

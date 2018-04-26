@@ -8,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -101,6 +102,22 @@ public class UsuarioBean {
 		FacesMessage mensaje = new FacesMessage("Usuario registrado correctamente.");
 		try {
 			geoffreyService.guardarUsuario(login, password, nombre, rol);
+			login = null;
+			password = null;
+			nombre = null;
+		} catch (GeoffreyException e) {
+			mensaje.setSummary(e.getMessage());
+			return "mensaje";
+		}
+		FacesContext.getCurrentInstance().addMessage(null, mensaje);
+		list();
+		return null;
+	}
+	
+	public String editar(Usuario usuario) {
+		FacesMessage mensaje = new FacesMessage("Usuario editado correctamente.");
+		try {
+			geoffreyService.editarUsuario(usuario);
 			login = null;
 			password = null;
 			nombre = null;
