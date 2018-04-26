@@ -36,6 +36,7 @@ h1 {
 	background: #000000;
 }
 
-button{
-	background-color: #000000;
+#headerpic{
+	width: 20%;
+	height: 20%;
 }
