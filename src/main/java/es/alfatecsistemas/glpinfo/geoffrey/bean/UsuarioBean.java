@@ -113,7 +113,7 @@ public class UsuarioBean {
 		list();
 		return null;
 	}
-	
+
 	public String editar(Usuario usuario) {
 		FacesMessage mensaje = new FacesMessage("Usuario editado correctamente.");
 		try {
@@ -150,6 +150,18 @@ public class UsuarioBean {
 		FacesMessage mensaje = new FacesMessage("Rol asignado.");
 		try {
 			geoffreyService.asignarRol(rol, login);
+		} catch (GeoffreyException e) {
+			mensaje.setSummary(e.getMessage());
+			return "mensaje";
+		}
+		FacesContext.getCurrentInstance().addMessage(null, mensaje);
+		return null;
+	}
+
+	public String cambiarClave() {
+		FacesMessage mensaje = new FacesMessage("Contraseña cambiada.");
+		try {
+			geoffreyService.cambiarClave(login, password);
 		} catch (GeoffreyException e) {
 			mensaje.setSummary(e.getMessage());
 			return "mensaje";

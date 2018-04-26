@@ -56,6 +56,14 @@ public class GeoffreyService {
 	public void eliminarUsuario(Usuario u) throws GeoffreyException {
 		usuarioRepository.delete(u);
 	}
+	
+	public void cambiarClave(String login, String password) throws GeoffreyException {
+		Usuario u = usuarioRepository.buscarUsuarioByLogin(login);
+		password = BCrypt.hashpw(password, BCrypt.gensalt());
+		System.out.println(u.getLogin());
+		u.setPassword(password);
+		usuarioRepository.save(u);
+	}
 
 	public void asignarRol(String rol, String login) throws GeoffreyException {
 		Usuario u = usuarioRepository.buscarUsuarioByLogin(login);
@@ -81,6 +89,7 @@ public class GeoffreyService {
 		usuarioRepository.save(u);
 
 	}
+
 
 	public void guardarTarea(Long id, String tipo, int identificador, String titulo, String descripcion, Date fecha,
 			int tiempo) {
