@@ -1,9 +1,9 @@
 package es.alfatecsistemas.glpinfo.geoffrey.bean;
 
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -11,6 +11,7 @@ import java.util.TimeZone;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.RequestScoped;
 
+import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,16 +30,16 @@ public class TareaBean {
 	private int identificador;
 	private String titulo;
 	private String descripcion;
-	private DateFormat sourceFormat = new SimpleDateFormat("dd/MM/yyyy");
 	private String fechaString;
 	private Date fecha;
 	private int tiempo;
+	private Tarea tareaSeleccionada;
 	
 	private List<Tarea> tareas;
 	
 	public void crearTarea() {
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-		format.setTimeZone(TimeZone.getTimeZone("Etc/CET"));
+		format.setTimeZone(TimeZone.getTimeZone("Europe/Madrid"));
 		
 		java.util.Date date = null;
 		try {
@@ -59,6 +60,21 @@ public class TareaBean {
 	@PostConstruct
 	public void listarTareas(){
 		tareas = geoffreyService.listarTareas();
+	}
+	
+	public void editarTarea(RowEditEvent event) {
+//        System.out.println(((Tarea) event.getObject()).getFecha());
+//        System.out.println(((Tarea) event.getObject()).getDescripcion());
+         
+		geoffreyService.guardarTarea(((Tarea) event.getObject()).getId(),
+									 ((Tarea) event.getObject()).getTipo(),
+									 ((Tarea) event.getObject()).getIdentificador(),
+									 ((Tarea) event.getObject()).getTitulo(),
+									 ((Tarea) event.getObject()).getDescripcion(),
+									 ((Tarea) event.getObject()).getFecha(),
+									 ((Tarea) event.getObject()).getTiempo());
+		
+		listarTareas();
 	}
 
 	public Long getId() {
@@ -131,6 +147,14 @@ public class TareaBean {
 
 	public void setFechaString(String fechaString) {
 		this.fechaString = fechaString;
+	}
+
+	public Tarea getTareaSeleccionada() {
+		return tareaSeleccionada;
+	}
+
+	public void setTareaSeleccionada(Tarea tareaSeleccionada) {
+		this.tareaSeleccionada = tareaSeleccionada;
 	}
 
 	

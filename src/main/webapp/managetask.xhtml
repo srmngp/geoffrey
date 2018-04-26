@@ -14,62 +14,103 @@
 <ui:include src="navigationbar.xhtml" />
 <h:body>
 	<h1>Alta de nueva tarea</h1>
-	<p:commandButton value="Añadir" oncomplete="PF('addDialog').show()"
-		icon="fa fa-user-circle" />
-	<p:dialog id="addDialog" widgetVar="addDialog"
-		header="Rellene los campos" resizable="false">
-		<h:form>
-			<p:selectOneMenu id="rol" value="#{tareaBean.tipo}"
-				style="width:125px">
-				<f:selectItem itemLabel="Seleccionar tipo" itemValue="" />
-				<f:selectItem itemLabel="Tarea" itemValue="TAREA" />
-				<f:selectItem itemLabel="Solicitud" itemValue="SOLICITUD" />
-				<f:selectItem itemLabel="Incidencia" itemValue="INCIDENCIA" />
-			</p:selectOneMenu>
-			<p:inputText value="#{tareaBean.identificador}"
-				placeholder="Identificador" />
-			<p:inputText value="#{tareaBean.titulo}" placeholder="Título" />
-			<p:inputText value="#{tareaBean.descripcion}"
-				placeholder="Descripción" />
-			<p:inputMask value="#{tareaBean.fechaString}" mask="99/99/9999"
-				placeholder="Fecha" />
-			<p:inputText value="#{tareaBean.tiempo}" placeholder="Tiempo" />
+				
+		<h:form id="principal">
 
-			<br />
-			<p:commandButton value="Guardar" id="nonAjax"
-				actionListener="#{tareaBean.crearTarea}" ajax="false"
-				icon="fa fa-save" update="tareas" />
-		</h:form>
-	</p:dialog>
-	<p:dataTable id="tareas" var="tarea" value="#{tareaBean.tareas}">
-		<p:column headerText="Tipo">
-			<h:outputText value="#{tarea.tipo}" />
-		</p:column>
-		<p:column headerText="Identificador">
-			<h:outputText value="#{tarea.identificador}" />
-		</p:column>
-		<p:column headerText="Título">
-			<h:outputText value="#{tarea.titulo}" />
-		</p:column>
-		<p:column headerText="Descripción">
-			<h:outputText value="#{tarea.descripcion}" />
-		</p:column>
-		<p:column headerText="Fecha">
-			<h:outputText value="#{tarea.fecha}" />
-		</p:column>
-		<p:column headerText="Tiempo(minutos)">
-			<h:outputText value="#{tarea.tiempo}" />
-		</p:column>
-		<p:column headerText="Tiempo(horas)">
-			<h:outputText value="#{(tarea.tiempo)/60}" />
-		</p:column>
+		<p:commandButton value="Añadir" oncomplete="PF('addDialog').show()" icon="fa fa-user-circle" />
+		
+		<p:dialog id="addDialog" widgetVar="addDialog" header="Rellene los campos" resizable="false" modal="true">
+					
+				<p:selectOneMenu id="rol" value="#{tareaBean.tipo}" style="width:125px">
+					<f:selectItem itemLabel="Seleccionar tipo" itemValue="" />
+					<f:selectItem itemLabel="Tarea" itemValue="TAREA" />
+					<f:selectItem itemLabel="Solicitud" itemValue="SOLICITUD" />
+					<f:selectItem itemLabel="Incidencia" itemValue="INCIDENCIA" />
+				</p:selectOneMenu>
+				<p:inputNumber value="#{tareaBean.identificador}" placeholder="Identificador" title="Identificador"/>
+				<p:inputText value="#{tareaBean.titulo}" placeholder="Título" title="Título"/>
+				<p:inputText value="#{tareaBean.descripcion}" placeholder="Descripción" title="Descripción"/>
+				<p:inputMask value="#{tareaBean.fechaString}" mask="99/99/9999" placeholder="Fecha" title="Fecha"/>
+				<p:inputNumber value="#{tareaBean.tiempo}" placeholder="Tiempo" title="Tiempo"/>
+					
+				<br />
+				<p:commandButton value="Guardar" actionListener="#{tareaBean.crearTarea}" ajax="false" icon="fa fa-save" />
+			
+		</p:dialog>
+			
+		<p:dataTable id="tablaTareas" var="tarea" value="#{tareaBean.tareas}" editable="true">
+			
+			<p:ajax event="rowEdit" listener="#{tareaBean.editarTarea}" update="tablaTareas" />
+			
+	       <p:column haderText="Tipo">
+				<p:cellEditor>
+	               <f:facet name="output"><h:outputText value="#{tarea.tipo}" /></f:facet>
+	               <f:facet name="input">
+		               	<h:selectOneMenu value="#{tarea.tipo}" style="width:100%">
+							<f:selectItem itemLabel="Tarea" itemValue="TAREA" />
+							<f:selectItem itemLabel="Solicitud" itemValue="SOLICITUD" />
+							<f:selectItem itemLabel="Incidencia" itemValue="INCIDENCIA" />  
+						</h:selectOneMenu>
+	               </f:facet>
+	           </p:cellEditor>
+	        </p:column>
+	           
+			<p:column headerText="Identificador">
+	           <p:cellEditor>
+	               <f:facet name="output"><h:outputText value="#{tarea.identificador}" /></f:facet>
+	               <f:facet name="input"><p:inputText value="#{tarea.identificador}" style="width:100%" label="Year"/></f:facet>
+	           </p:cellEditor>
+	       </p:column>
+	       
+	      	<p:column headerText="Título">
+	           <p:cellEditor>
+	               <f:facet name="output"><h:outputText value="#{tarea.titulo}" /></f:facet>
+	               <f:facet name="input"><p:inputText value="#{tarea.titulo}" style="width:100%" label="Year"/></f:facet>
+	           </p:cellEditor>
+	       </p:column>
+	       
+	      	<p:column headerText="Descripción">
+	           <p:cellEditor>
+	               <f:facet name="output"><h:outputText value="#{tarea.descripcion}" /></f:facet>
+	               <f:facet name="input"><p:inputText value="#{tarea.descripcion}" style="width:100%" label="Year"/></f:facet>
+	           </p:cellEditor>
+	       </p:column>
+	       
+	      	<p:column headerText="Fecha">
+	           <p:cellEditor>
+	               <f:facet name="output"><h:outputText value="#{tarea.fecha}" ><f:convertDateTime pattern="d-M-yyyy" /> </h:outputText> </f:facet>
+	               <f:facet name="input">
+	               	<p:inputText value="#{tarea.fecha}"> 
+	               		<f:convertDateTime pattern="d-M-yyyy" />
+	               	</p:inputText>
+	               </f:facet>
+	           </p:cellEditor>
+	       </p:column>			
+	       
+	      	<p:column headerText="Tiempo(minutos)">
+	           <p:cellEditor>
+	               <f:facet name="output"><h:outputText value="#{tarea.tiempo}" /></f:facet>
+	               <f:facet name="input"><p:inputText value="#{tarea.tiempo}" style="width:100%" label="Year"/></f:facet>
+	           </p:cellEditor>
+	       </p:column>
+	       
+	      	<p:column headerText="Tiempo(horas)">
+	           <p:cellEditor>
+	               <f:facet name="output"><h:outputText value="#{(tarea.tiempo)/60}" /></f:facet>
+	               <f:facet name="input"><p:inputText value="#{tarea.tiempo}" style="width:100%" label="Year"/></f:facet>
+	           </p:cellEditor>
+	       </p:column>
+		
+			<p:column style="width:32px">
+				<p:rowEditor />
+			</p:column>		
+		
+				<f:facet name="footer">
+				        En total hay #{fn:length(tareaBean.tareas)} tareas.
+				</f:facet>
+	
+		</p:dataTable>	
 
-
-		<f:facet name="footer">
-		        En total hay #{fn:length(tareaBean.tareas)} tareas.
-		    </f:facet>
-
-	</p:dataTable>
-
+	</h:form>
 </h:body>
 </html>
