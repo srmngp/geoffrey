@@ -101,6 +101,9 @@ public class UsuarioBean {
 		FacesMessage mensaje = new FacesMessage("Usuario registrado correctamente.");
 		try {
 			geoffreyService.guardarUsuario(login, password, nombre);
+			login=null;
+			password=null;
+			nombre=null;
 		} catch (GeoffreyException e) {
 			mensaje.setSummary(e.getMessage());
 			return "mensaje";

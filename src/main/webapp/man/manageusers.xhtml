@@ -12,7 +12,7 @@
 		href="#{request.contextPath}/resources/css/default.css" />
 </h:head>
 <ui:include src="/navigationbar.xhtml" />
-<h:body>
+<h:body onload="#{usuarioBean.list()}">
 	<h1>Alta a nuevo usuario</h1>
 	<h:form>
 		<h:panelGrid columns="2" cellpadding="3">
@@ -27,7 +27,7 @@
 			<p:inputText id="nombre" value="#{usuarioBean.nombre}" />
 		</h:panelGrid>
 		<br />
-		<p:commandButton value="Guardar" id="nonAjax"
+		<p:commandButton value="Guardar" id="nonAjax" update="usuarios"
 			actionListener="#{usuarioBean.registrar}" ajax="false"
 			icon="fa fa-save" />
 	</h:form>
