@@ -48,8 +48,7 @@ public class GeoffreyService {
 		usuarioRepository.save(u);
 	}
 	
-	public void eliminarUsuario(String login) throws GeoffreyException {
-		Usuario u = usuarioRepository.buscarUsuarioByLogin(login);
+	public void eliminarUsuario(Usuario u) throws GeoffreyException {
 		usuarioRepository.delete(u);
 	}
 

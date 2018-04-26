@@ -113,10 +113,10 @@ public class UsuarioBean {
 		return null;
 	}
 
-	public String eliminar() {
+	public String eliminar(Usuario usuario) {
 		FacesMessage mensaje = new FacesMessage("Usuario eliminado correctamente.");
 		try {
-			geoffreyService.eliminarUsuario(login);
+			geoffreyService.eliminarUsuario(usuario);
 			login = null;
 			password = null;
 			nombre = null;
