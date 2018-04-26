@@ -47,9 +47,14 @@ public class GeoffreyService {
 
 		usuarioRepository.save(u);
 	}
+	
+	public void eliminarUsuario(String login) throws GeoffreyException {
+		Usuario u = usuarioRepository.buscarUsuarioByLogin(login);
+		usuarioRepository.delete(u);
+	}
 
 	public void asignarRol(String rol, String login) throws GeoffreyException {
-		Usuario u = usuarioRepository.buscarUsuarioByNombre(login);
+		Usuario u = usuarioRepository.buscarUsuarioByLogin(login);
 		List<Rol> roles = new ArrayList<Rol>();
 		u.setRoles(roles); // Vacia los roles que tenia
 		Rol r;

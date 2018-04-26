@@ -10,5 +10,5 @@ import es.alfatecsistemas.glpinfo.geoffrey.model.entity.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	@Query("select u from Usuario u where u.login = :login")
-	Usuario buscarUsuarioByNombre(@Param("login") String login);
+	Usuario buscarUsuarioByLogin(@Param("login") String login);
 }

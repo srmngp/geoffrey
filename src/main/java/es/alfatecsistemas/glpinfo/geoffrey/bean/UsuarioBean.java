@@ -91,7 +91,7 @@ public class UsuarioBean {
 	}
 
 	// Métodos
-	
+
 	public void userNRoll() {
 		registrar();
 		asignarRol();
@@ -101,9 +101,25 @@ public class UsuarioBean {
 		FacesMessage mensaje = new FacesMessage("Usuario registrado correctamente.");
 		try {
 			geoffreyService.guardarUsuario(login, password, nombre);
-			login=null;
-			password=null;
-			nombre=null;
+			login = null;
+			password = null;
+			nombre = null;
+		} catch (GeoffreyException e) {
+			mensaje.setSummary(e.getMessage());
+			return "mensaje";
+		}
+		FacesContext.getCurrentInstance().addMessage(null, mensaje);
+		list();
+		return null;
+	}
+
+	public String eliminar() {
+		FacesMessage mensaje = new FacesMessage("Usuario eliminado correctamente.");
+		try {
+			geoffreyService.eliminarUsuario(login);
+			login = null;
+			password = null;
+			nombre = null;
 		} catch (GeoffreyException e) {
 			mensaje.setSummary(e.getMessage());
 			return "mensaje";
