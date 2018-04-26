@@ -14,7 +14,8 @@
 <ui:include src="/navigationbar.xhtml" />
 <h:body onload="#{usuarioBean.list()}">
 	<h1>Gestión de usuarios</h1>
-	<ui:include src="/addUser.xhtml" />
+	<ui:include src="/man/addUser.xhtml" />
+	<ui:include src="/rolemod.xhtml" />
 
 	<h:form id="id">
 		<p:dataTable id="usuarios" var="usuario"

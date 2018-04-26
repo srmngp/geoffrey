@@ -4,23 +4,22 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<img src="/geoffrey/resources/img/headerpic.png" id="headerpic" />
-	<br />
+	<div id="mainheader">
+		<img src="/geoffrey/resources/img/headerpic.png" id="headerpic" /> <br />
 
-	<p:button value="Gestión de usuarios"
-		rendered="#{security.hasRole('ROLE_MAN')}"
-		outcome="/man/manageusers.xhtml" icon="fa fa-user-circle" />
-
-	<p:button value="Gestión de roles"
-		rendered="#{security.hasRole('ROLE_MAN')}"
-		outcome="/man/managerol.xhtml" icon=" fa fa-trash " />
-	<p:button value="Gestión de tareas" outcome="/managetask.xhtml"
-		icon="fa fa-list" />
-	<p:button value="Cerrar sesión" href="/logout" icon="fa fa-sign-out" />
-	<h3>
-		Usuario:
-		<h:outputText id="user" value="#{security.login}" />
-		<h:outputText rendered="#{security.hasRole('ROLE_ADMIN')}"
-			value=" -> Administrador." />
-	</h3>
+		<div id="mainmenu">
+			<p:button value="Gestión de usuarios"
+				rendered="#{security.hasRole('ROLE_MAN')}"
+				outcome="/man/manageusers.xhtml" icon="fa fa-user-circle" />
+			<p:button value="Gestión de tareas" outcome="/managetask.xhtml"
+				icon="fa fa-list" />
+			<p:button value="Cerrar sesión" href="/logout" icon="fa fa-sign-out" />
+		</div>
+		<h3>
+			Usuario:
+			<h:outputText id="user" value="#{security.login}" />
+			<h:outputText rendered="#{security.hasRole('ROLE_ADMIN')}"
+				value=" -> Administrador." />
+		</h3>
+	</div>
 </ui:composition>

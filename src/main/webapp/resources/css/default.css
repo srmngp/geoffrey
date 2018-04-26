@@ -4,7 +4,7 @@
 
 body {
 	font-family: 'Ubuntu';
-	background-color: #cfcfcf;
+	background-color: #ffffff;
 }
 
 .ui-widget {
@@ -20,12 +20,12 @@ input[type="text"]:focus, input[type="password"]:focus {
 h1 {
 	border: 1px solid #000000;
 	font-variant: small-caps;
-    overflow: hidden;
-    text-align: center;
-    color: #ffffff;
-    width: 100%;
-    background-color: #A30000;
-    border-color: #A30000;
+	overflow: hidden;
+	text-align: center;
+	color: #ffffff;
+	width: 100%;
+	background-color: #A30000;
+	border-color: #A30000;
 }
 
 #user {
@@ -36,7 +36,17 @@ h1 {
 	background: #000000;
 }
 
-#headerpic{
-	width: 20%;
-	height: 20%;
+#headerpic {
+	width: 35%;
+	height: 35%;
+	display: block;
+	margin: auto;
+}
+
+div#mainheader {
+	background-color: #ff2d2d;
+}
+
+div#mainmenu {
+	text-align: center;
 }
