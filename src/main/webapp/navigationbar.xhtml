@@ -3,8 +3,10 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	<h2>Geoffrey</h2>
-
+    
+    <img src="/resources/img/headerpic.png" id="headerpic" />
+    <br />
+    
 	<p:button value="Gestión de usuarios"
 		rendered="#{security.hasRole('ROLE_MAN')}"
 		outcome="/man/manageusers.xhtml" icon="fa fa-user-circle" />
@@ -18,6 +20,4 @@
 		Usuario:
 		<h:outputText id="user" value="#{security.login}" />
 	</h3>
-	<h:body>
-	</h:body>
 </ui:composition>

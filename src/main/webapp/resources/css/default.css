@@ -1,5 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=Karla);
+
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:300);
+
 body {
 	font-family: 'Ubuntu';
+	background-color: #cfcfcf;
 }
 
 .ui-widget {
@@ -12,9 +17,15 @@ input[type="text"]:focus, input[type="password"]:focus {
 	box-shadow: 0 0 10px #A30000;
 }
 
-h2 {
-	color: #A30000;
-	font-family: 'Ubuntu';
+h1 {
+	border: 1px solid #000000;
+	font-variant: small-caps;
+    overflow: hidden;
+    text-align: center;
+    color: #ffffff;
+    width: 100%;
+    background-color: #A30000;
+    border-color: #A30000;
 }
 
 #user {
@@ -23,4 +34,8 @@ h2 {
 	font-weight: 400;
 	color: #ffffff;
 	background: #000000;
+}
+
+button{
+	background-color: #000000;
 }
