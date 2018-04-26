@@ -40,21 +40,31 @@ public class GeoffreyService {
 		password = BCrypt.hashpw(password, BCrypt.gensalt());
 		u.setPassword(password);
 		u.setNombre(nombre);
-		
-		//Guarda el usuario sin el rol para evitar problemas de relaciones
+
+		// Guarda el usuario sin el rol para evitar problemas de relaciones
 		usuarioRepository.save(u);
 		
-		//Asignacion de rol
+		asignarRol(rol, login);
+
+	}
+
+	public void eliminarUsuario(Usuario u) throws GeoffreyException {
+		usuarioRepository.delete(u);
+	}
+
+	public void asignarRol(String rol, String login) throws GeoffreyException {
+		Usuario u = usuarioRepository.buscarUsuarioByLogin(login);
+		// Asignacion de rol
 		List<Rol> roles = new ArrayList<Rol>();
 		Rol r;
-		
+
 		if (rol.equals("ROLE_ADMIN")) {
 			r = rolRepository.buscarRolByNombre("ROLE_ADMIN");
 			roles.add(r);
 			r = rolRepository.buscarRolByNombre("ROLE_MAN");
 			roles.add(r);
 		}
-		
+
 		if (rol.equals("ROLE_MAN")) {
 			r = rolRepository.buscarRolByNombre("ROLE_MAN");
 			roles.add(r);
@@ -64,15 +74,7 @@ public class GeoffreyService {
 		u.setRoles(roles);
 
 		usuarioRepository.save(u);
-	}
-	
-	public void eliminarUsuario(Usuario u) throws GeoffreyException {
-		usuarioRepository.delete(u);
-	}
 
-	public void asignarRol(String rol, String login) throws GeoffreyException {
-		Usuario u = usuarioRepository.buscarUsuarioByLogin(login);
-		
 	}
 
 	public void guardarTarea(Long id, String tipo, int identificador, String titulo, String descripcion, Date fecha,

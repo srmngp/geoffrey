@@ -20,5 +20,7 @@
 	<h3>
 		Usuario:
 		<h:outputText id="user" value="#{security.login}" />
+		<h:outputText rendered="#{security.hasRole('ROLE_ADMIN')}"
+			value=" -> Administrador." />
 	</h3>
 </ui:composition>

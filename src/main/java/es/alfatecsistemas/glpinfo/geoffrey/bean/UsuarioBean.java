@@ -130,14 +130,14 @@ public class UsuarioBean {
 	}
 
 	public String asignarRol() {
-		/*FacesMessage mensaje = new FacesMessage("Rol asignado.");
+		FacesMessage mensaje = new FacesMessage("Rol asignado.");
 		try {
 			geoffreyService.asignarRol(rol, login);
 		} catch (GeoffreyException e) {
 			mensaje.setSummary(e.getMessage());
 			return "mensaje";
 		}
-		FacesContext.getCurrentInstance().addMessage(null, mensaje);*/
+		FacesContext.getCurrentInstance().addMessage(null, mensaje);
 		return null;
 	}
 
