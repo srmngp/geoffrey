@@ -100,7 +100,7 @@ public class UsuarioBean {
 	public String registrar() {
 		FacesMessage mensaje = new FacesMessage("Usuario registrado correctamente.");
 		try {
-			geoffreyService.guardarUsuario(login, password, nombre);
+			geoffreyService.guardarUsuario(login, password, nombre, rol);
 			login = null;
 			password = null;
 			nombre = null;
@@ -130,14 +130,14 @@ public class UsuarioBean {
 	}
 
 	public String asignarRol() {
-		FacesMessage mensaje = new FacesMessage("Rol asignado.");
+		/*FacesMessage mensaje = new FacesMessage("Rol asignado.");
 		try {
 			geoffreyService.asignarRol(rol, login);
 		} catch (GeoffreyException e) {
 			mensaje.setSummary(e.getMessage());
 			return "mensaje";
 		}
-		FacesContext.getCurrentInstance().addMessage(null, mensaje);
+		FacesContext.getCurrentInstance().addMessage(null, mensaje);*/
 		return null;
 	}
 

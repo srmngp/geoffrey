@@ -31,7 +31,7 @@ public class GeoffreyService {
 
 	// Servicios
 
-	public void guardarUsuario(String login, String password, String nombre) throws GeoffreyException {
+	public void guardarUsuario(String login, String password, String nombre, String rol) throws GeoffreyException {
 		Usuario u = new Usuario();
 
 		u.setActivo(true);
@@ -40,22 +40,12 @@ public class GeoffreyService {
 		password = BCrypt.hashpw(password, BCrypt.gensalt());
 		u.setPassword(password);
 		u.setNombre(nombre);
-		/*
-		 * List<Rol> roles = new ArrayList<Rol>(); Rol rol = new Rol();
-		 * rol.setNombre("ROLE_USER"); roles.add(rol); u.setRoles(roles);
-		 */
-
+		
+		//Guarda el usuario sin el rol para evitar problemas de relaciones
 		usuarioRepository.save(u);
-	}
-	
-	public void eliminarUsuario(Usuario u) throws GeoffreyException {
-		usuarioRepository.delete(u);
-	}
-
-	public void asignarRol(String rol, String login) throws GeoffreyException {
-		Usuario u = usuarioRepository.buscarUsuarioByLogin(login);
+		
+		//Asignacion de rol
 		List<Rol> roles = new ArrayList<Rol>();
-		u.setRoles(roles); // Vacia los roles que tenia
 		Rol r;
 		
 		if (rol.equals("ROLE_ADMIN")) {
@@ -74,6 +64,15 @@ public class GeoffreyService {
 		u.setRoles(roles);
 
 		usuarioRepository.save(u);
+	}
+	
+	public void eliminarUsuario(Usuario u) throws GeoffreyException {
+		usuarioRepository.delete(u);
+	}
+
+	public void asignarRol(String rol, String login) throws GeoffreyException {
+		Usuario u = usuarioRepository.buscarUsuarioByLogin(login);
+		
 	}
 
 	public void guardarTarea(Long id, String tipo, int identificador, String titulo, String descripcion, Date fecha,

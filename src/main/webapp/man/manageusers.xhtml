@@ -14,23 +14,7 @@
 <ui:include src="/navigationbar.xhtml" />
 <h:body onload="#{usuarioBean.list()}">
 	<h1>Gestión de usuarios</h1>
-	<h:form>
-		<h:panelGrid columns="2" cellpadding="3">
-			<p:outputLabel for="login" value="Nombre de usuario" />
-			<p:inputText id="login" value="#{usuarioBean.login}" />
-
-			<p:outputLabel for="password" value="Contraseña" />
-			<p:inputText id="password" type="password"
-				value="#{usuarioBean.password}" />
-
-			<p:outputLabel for="nombre" value="Nombre" />
-			<p:inputText id="nombre" value="#{usuarioBean.nombre}" />
-		</h:panelGrid>
-		<br />
-		<p:commandButton value="Guardar" id="nonAjax" update="usuarios"
-			actionListener="#{usuarioBean.registrar}" ajax="false"
-			icon="fa fa-save" />
-	</h:form>
+	<ui:include src="/addUser.xhtml" />
 
 	<h:form id="id">
 		<p:dataTable id="usuarios" var="usuario"
